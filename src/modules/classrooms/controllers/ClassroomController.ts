@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import {ClassroomValidateFaculdade} from '../services/ClassroomValidateFaculdade'
 import { ClassroomService } from "../services/ClassroomService";
 
 class ClassrooomController {
@@ -8,7 +7,7 @@ class ClassrooomController {
     const { name, description } = request.body;
     const { id } = request.user;
 
-    const classroomService = container.resolve(ClassroomValidateFaculdade);
+    const classroomService = container.resolve(ClassroomService);
     
     const classroom = await classroomService.create({
       name, 

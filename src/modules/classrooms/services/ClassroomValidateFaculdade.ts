@@ -1,12 +1,12 @@
 
 import { ICreateClassroomDTO } from "../dtos/ICreateClassroomDTO";
 import { Classroom } from "../entities/Classroom";
-import { ClassroomServicesValidate } from "../interfaces/IClassroomServicesValidate";
+import { ClassroomServicesStrategy } from "../interfaces/IClassroomServicesStrategy";
 import { inject, injectable } from "tsyringe";
 import { IClassroomsRepository } from "../repositories/IClassroomsRepository";
 
 @injectable()
-class ClassroomValidateFaculdade implements ClassroomServicesValidate {
+class ClassroomValidateFaculdade implements ClassroomServicesStrategy {
     constructor(
         @inject("ClassroomsRepository")
         private classrooomsRepository: IClassroomsRepository

@@ -6,7 +6,8 @@ import { Classroom } from "../entities/Classroom";
 import { IRequestJoinClassroom } from "../interfaces/IRequestJoinClassroom";
 import { AppError } from "../../../shared/errors/AppError";
 import { IUsersRepository } from "../../accounts/repositories/IUsersRepository";
-import { ClassroomValidateFaculdade } from "./ClassroomValidateFaculdade";
+import { ClassroomServicesStrategy } from "../interfaces/IClassroomServicesStrategy";
+
 @injectable()
 class ClassroomService{
   constructor(
@@ -14,7 +15,8 @@ class ClassroomService{
     private classrooomsRepository: IClassroomsRepository,
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
-    private validateFaculdade: ClassroomValidateFaculdade
+    @inject("ClassroomServicesStrategy") 
+    private validateFaculdade: ClassroomServicesStrategy
   ) {}
   
   async create({ name, description, professor_id }: ICreateClassroomDTO): Promise<Classroom> {
