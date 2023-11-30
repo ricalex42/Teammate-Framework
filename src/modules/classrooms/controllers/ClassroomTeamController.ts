@@ -9,7 +9,7 @@ class ClassroomTeamController {
     const { name } = request.body;
     const { id: creator_id } = request.user;
 
-    const classroomTeamService = container.resolve(ClassroomTeamValidateFaculdade);
+    const classroomTeamService = container.resolve(ClassroomTeamService);
 
     const classroomTeam = await classroomTeamService.create({
       classroom_id,
