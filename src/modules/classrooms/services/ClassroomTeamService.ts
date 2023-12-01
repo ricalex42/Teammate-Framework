@@ -3,7 +3,7 @@ import { IClassroomTeamsRepository } from '../repositories/IClassroomTeamsReposi
 import { IUsersRepository } from '../../accounts/repositories/IUsersRepository';
 import { IRequestJoinClassroomTeam } from '../interfaces/IRequestJoinClassroomTeam';
 import { AppError } from '../../../shared/errors/AppError';
-import { ClassroomTeamServiceStrategy } from '../interfaces/IClassRoomTeamServicesStrategy';
+import { IClassroomTeamServiceStrategy } from '../interfaces/IClassRoomTeamServicesStrategy';
 import { ClassroomTeam } from '../entities/ClassroomTeam';
 import { ICreateClassroomTeamDTO } from '../dtos/ICreateClassroomTeamDTO';
 
@@ -14,17 +14,16 @@ class ClassroomTeamService {
     private classroomTeamsRepository: IClassroomTeamsRepository,
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
-    private ClassroomTeamServiceStrategy: ClassroomTeamServiceStrategy
-  ) {
-    this.ClassroomTeamServiceStrategy = ClassroomTeamServiceStrategy
-  }
+    @inject('ClassroomTeamValidateFaculdade')
+    private ClassroomTeamServiceStrategy: IClassroomTeamServiceStrategy
+  ) {}
 
   async create({ classroom_id, name, creator_id }: ICreateClassroomTeamDTO): Promise<ClassroomTeam> {
-    return this.ClassroomTeamServiceStrategy.create({ classroom_id, name, creator_id });
+    return await this.ClassroomTeamServiceStrategy.create({ classroom_id, name, creator_id });
   }
 
   async join({ user_id, team_id }: IRequestJoinClassroomTeam): Promise<ClassroomTeam> {
-    return this.ClassroomTeamServiceStrategy.join({ user_id, team_id });
+    return await this.ClassroomTeamServiceStrategy.join({ user_id, team_id });
   }
 
   async details(id: string): Promise<ClassroomTeam> {

@@ -5,11 +5,11 @@
     import { IRequestJoinClassroomTeam } from '../interfaces/IRequestJoinClassroomTeam';
     import { IUsersRepository } from '../../accounts/repositories/IUsersRepository';
     import { AppError } from '../../../shared/errors/AppError';
-    import {ClassroomTeamServiceStrategy} from '../interfaces/IClassRoomTeamServicesStrategy'
+    import {IClassroomTeamServiceStrategy} from '../interfaces/IClassRoomTeamServicesStrategy'
 
 
     @injectable()
-    class ClassroomTeamValidateFaculdade implements ClassroomTeamServiceStrategy{
+    class ClassroomTeamValidateFaculdade implements IClassroomTeamServiceStrategy{
         constructor(
             @inject('ClassroomTeamsRepository')
             private classroomTeamsRepository: IClassroomTeamsRepository,

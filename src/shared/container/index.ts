@@ -10,6 +10,10 @@ import { UsersTokensRepository } from "../../modules/accounts/repositories/imple
 import { IUsersTokensRepository } from "../../modules/accounts/repositories/IUsersTokensRepository";
 import { IClassroomTeamsRepository } from "../../modules/classrooms/repositories/IClassroomTeamsRepository";
 import { ClassroomTeamsRepository } from "../../modules/classrooms/repositories/implementations/ClassroomTeamsRepository";
+import {ClassroomValidateFaculdade} from '../../modules/classrooms/services/ClassroomValidateFaculdade'
+import {IClassroomServicesStrategy} from '../../modules/classrooms/interfaces/IClassroomServicesStrategy'
+import {IClassroomTeamServiceStrategy} from "../../modules/classrooms/interfaces/IClassRoomTeamServicesStrategy"
+import {ClassroomTeamValidateFaculdade} from "../../modules/classrooms/services/ClassroomTeamValidateFaculdade"
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -30,3 +34,13 @@ container.registerSingleton<IUsersTokensRepository>(
   "UsersTokensRepository",
   UsersTokensRepository
 );
+
+container.registerSingleton<IClassroomServicesStrategy>(
+  "ClassroomValidateFaculdade",
+  ClassroomValidateFaculdade
+)
+
+container.registerSingleton<IClassroomTeamServiceStrategy>( 
+  "ClassroomTeamValidateFaculdade",
+  ClassroomTeamValidateFaculdade
+)

@@ -1,6 +1,6 @@
 import { ICreateClassroomDTO } from "../dtos/ICreateClassroomDTO";
 import { Classroom } from "../entities/Classroom";
 
-export interface ClassroomServicesStrategy{
+export interface IClassroomServicesStrategy{
     create(data:ICreateClassroomDTO): Promise<Classroom>
 }
