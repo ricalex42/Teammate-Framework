@@ -9,25 +9,22 @@ import { ICreateClassroomTeamDTO } from '../dtos/ICreateClassroomTeamDTO';
 
 @injectable()
 class ClassroomTeamService {
-  private classroomTeamValidator: ClassroomTeamServiceStrategy;
-
   constructor(
     @inject('ClassroomTeamsRepository')
     private classroomTeamsRepository: IClassroomTeamsRepository,
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
-    @inject('ClassroomTeamServiceStrategy')
-    classroomTeamValidator: ClassroomTeamServiceStrategy
+    private ClassroomTeamServiceStrategy: ClassroomTeamServiceStrategy
   ) {
-    this.classroomTeamValidator = classroomTeamValidator;
+    this.ClassroomTeamServiceStrategy = ClassroomTeamServiceStrategy
   }
 
   async create({ classroom_id, name, creator_id }: ICreateClassroomTeamDTO): Promise<ClassroomTeam> {
-    return this.classroomTeamValidator.create({ classroom_id, name, creator_id });
+    return this.ClassroomTeamServiceStrategy.create({ classroom_id, name, creator_id });
   }
 
   async join({ user_id, team_id }: IRequestJoinClassroomTeam): Promise<ClassroomTeam> {
-    return this.classroomTeamValidator.join({ user_id, team_id });
+    return this.ClassroomTeamServiceStrategy.join({ user_id, team_id });
   }
 
   async details(id: string): Promise<ClassroomTeam> {

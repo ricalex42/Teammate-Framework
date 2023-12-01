@@ -15,12 +15,13 @@ class ClassroomService{
     private classrooomsRepository: IClassroomsRepository,
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
-    @inject("ClassroomServicesStrategy") 
-    private validateFaculdade: ClassroomServicesStrategy
-  ) {}
+    private ClassroomServicesStrategy: ClassroomServicesStrategy
+  ) {
+    this.ClassroomServicesStrategy = ClassroomServicesStrategy
+  }
   
   async create({ name, description, professor_id }: ICreateClassroomDTO): Promise<Classroom> {
-    return this.validateFaculdade.create({ name, description, professor_id });
+    return this.ClassroomServicesStrategy.create({ name, description, professor_id });
   }
 
   async join({ classroom_id, user_id }: IRequestJoinClassroom): Promise<Classroom> {
