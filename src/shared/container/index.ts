@@ -38,7 +38,7 @@ container.registerSingleton<IUsersTokensRepository>(
 container.registerSingleton<IClassroomServicesStrategy>(
   "ClassroomValidateFaculdade",
   ClassroomValidateFaculdade
-)
+);
 
 container.registerSingleton<IClassroomTeamServiceStrategy>( 
   "ClassroomTeamValidateFaculdade",

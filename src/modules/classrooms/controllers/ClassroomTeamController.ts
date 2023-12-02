@@ -24,7 +24,7 @@ class ClassroomTeamController {
     const { team_id } = request.body;
     const { id: user_id } = request.user;
     
-    const classroomTeamService = container.resolve(ClassroomTeamValidateFaculdade);
+    const classroomTeamService = container.resolve(ClassroomTeamService);
 
     const classroomTeam = await classroomTeamService.join({
       team_id,
